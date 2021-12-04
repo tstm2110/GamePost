@@ -1,25 +1,41 @@
-# README
+# <GamePost>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+<ゲームの評価、レビュー投稿サイト。
+会員登録したユーザーがゲームの評価レビューを行うことができる。
+会員登録してないユーザーは評価やレビューの閲覧のみできる。
+新規で評価レビューを行う場合は既に同名で投稿していないかを確認し、
+投稿されている場合はその投稿からレビューを行う。
+作品を探しやすくするためランキング、タグ検索をすることができる。>
 
-Things you may want to cover:
+### サイトテーマ
+<買いたいゲーム遊びたいゲームに迷った時に様々なユーザーのおすすめを確認できるサイト>
 
-* Ruby version
+### テーマを選んだ理由
+<最近はスマホやパソコンで手軽に遊べるゲームから据え置きの専用ゲーム機やゲームセンター等一部の施設にしか設置されていないものまで多くのゲームに溢れています。
+私はゲームを遊ぶ前にどういったゲームなのかを調べますが、評価サイトの中にはサクラが混じっていたり、
+ユーザーにゲーム内アイテムを対価に高評価を依頼したり、そもそも評価レビューが存在しないものもあります。
+そこでゲームを遊ぶ前の参考の一助になるかと思いこのテーマにしました。>
 
-* System dependencies
+### ターゲットユーザ
+<遊ぶゲームを選びたい人、お気に入りのゲームをおすすめしたい人。>
 
-* Configuration
+### 主な利用シーン
+<ゲームを遊ぶ前に評価を調べたいときや楽しかったゲームをおすすめしたいときなど。>
 
-* Database creation
+## 設計書
+<...>
 
-* Database initialization
+## チャレンジ要素一覧
+<https://docs.google.com/spreadsheets/d/1ssc4GrZpBs2LOAdlwkvdUG-wS6NqDOzexnQAFH29umc/edit#gid=0>
 
-* How to run the test suite
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# GamePost
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
