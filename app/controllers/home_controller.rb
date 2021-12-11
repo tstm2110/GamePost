@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    render text: "hello world."
+    render plain: "hello world."
   end
 end
