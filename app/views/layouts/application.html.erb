@@ -10,6 +10,25 @@
   </head>
 
   <body>
-    <%= yield %>
+    <!--管理者でログインしている場合-->
+   <% if admin_signed_in? %>
+   <li>
+       <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
+   </li>
+   　<!--ログインしている場合-->
+   <% elsif member_signed_in? %>
+  <li>
+       <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
+   </li>
+    <!--ログインしてない場合-->
+  <% else %>
+   <li>
+       <%= link_to "新規登録", new_member_registration_path %>
+   </li>
+   <li>
+       <%= link_to "ログイン", new_member_session_path %>
+   </li>
+   <% end %>
+   <%= yield %>
   </body>
 </html>

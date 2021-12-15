@@ -14,6 +14,17 @@ devise_for :members, controllers: {
   sessions: 'public/sessions'
 }
 
-  root "home#index"
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # 管理者用
+  namespace :admin do
+    root "homes#top"
+    # get '/admin/sign_out' => 'devise/sessions#destroy'
+  end
+ # 顧客用
+  scope module: :public do
+    root "homes#top"
+  end
+
 end
