@@ -17,8 +17,14 @@
    </li>
    　<!--ログインしている場合-->
    <% elsif member_signed_in? %>
-  <li>
+   <li>
+        <%= link_to '投稿フォーム', new_post_image_path %>
+   </li>
+   <li>
        <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
+   </li>
+   <li>
+       <%= link_to"お問い合わせ", contacts_path %>
    </li>
     <!--ログインしてない場合-->
   <% else %>
@@ -28,7 +34,11 @@
    <li>
        <%= link_to "ログイン", new_member_session_path %>
    </li>
+   <li>
+       <%= link_to"お問い合わせ", contacts_path %>
+   </li>
    <% end %>
    <%= yield %>
   </body>
+  <footer></footer>
 </html>

@@ -1,0 +1,43 @@
+<div>
+  <%= attachment_image_tag @post_image, :image %>
+  <p>ゲーム名：<%= @post_image.game_name %></p>
+  <p>説明：<%= @post_image.caption %></p>
+  <p>ユーザーネーム：<%= @post_image.member.name %></p>
+  <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
+<!--レビューサイトの性質上削除は個人では行わず問い合わせから削除依頼で-->
+  <% if @post_image.favorited_by?(current_member) %>
+    <p>
+      <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
+        ♥<%= @post_image.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_image_favorites_path(@post_image), method: :post do %>
+        ♡<%= @post_image.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+
+</div>
+
+<div>
+<p>コメント件数：<%= @post_image.post_reviews.count %></p>
+<% @post_image.post_reviews.each do |post_review| %>
+
+  <%= post_review.member.name %>
+  <%= post_review.created_at.strftime('%Y/%m/%d') %><%= post_review.review %>
+  <% if post_review.member.id == current_member.id %>
+  <div>
+    <%= link_to "削除", post_image_post_review_path(post_review.post_image, post_review), method: :delete %>
+  </div>
+  <% end %>
+
+<% end %>
+</div>
+<div>
+<%= form_with(model:[@post_image, @post_review], local: true) do |f| %>
+  <%= f.text_area :review, rows:'5',placeholder: "レビューをここに" %>
+  <%= f.submit "送信する" %>
+<% end %>
+</div>

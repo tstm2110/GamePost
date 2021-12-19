@@ -16,15 +16,26 @@ devise_for :members, controllers: {
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    resources :contacts, only:[:index]
+    resources :contacts_mailer, only:[:send_mail]
+    get "contacts/done" => "contacts#done"
+    get "contacts/confirm" => "contacts#confirm"
+    post "contacts/done" => "contacts#done"
+    post "contacts/confirm" => "contacts#confirm"
 
   # 管理者用
   namespace :admin do
     root "homes#top"
     # get '/admin/sign_out' => 'devise/sessions#destroy'
   end
- # 顧客用
+ # 会員用
   scope module: :public do
     root "homes#top"
+    resources :post_images, only: [:new, :create, :index, :show, :destroy]
+    resources :post_images, only: [:new, :create, :index, :show, :destroy] do
+    resources :post_reviews, only: [:create, :destroy]
+     resource :favorites, only: [:create, :destroy]
+  end
   end
 
 end
