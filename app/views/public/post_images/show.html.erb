@@ -1,7 +1,21 @@
+投稿詳細
 <div>
   <%= attachment_image_tag @post_image, :image %>
   <p>ゲーム名：<%= @post_image.game_name %></p>
   <p>説明：<%= @post_image.caption %></p>
+
+
+
+<br>
+
+<p> "タグ: "</p>
+ <%= @post_tags.each do |tag| %>
+  <span >
+
+     <%= "(#{tag.posts.count})"%>
+
+  </span>
+    <% end %>
   <p>ユーザーネーム：<%= @post_image.member.name %></p>
   <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
 <!--レビューサイトの性質上削除は個人では行わず問い合わせから削除依頼で-->

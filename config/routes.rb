@@ -22,7 +22,7 @@ devise_for :members, controllers: {
     get "contacts/confirm" => "contacts#confirm"
     post "contacts/done" => "contacts#done"
     post "contacts/confirm" => "contacts#confirm"
-
+    get 'search' => 'searches#search'
   # 管理者用
   namespace :admin do
     root "homes#top"
