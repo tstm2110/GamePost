@@ -1,1 +1,16 @@
 <h1>管理者用トップページ</h1>
+
+<h2>新着　投稿作品</h2>
+<% @post_images.each do |post_image| %>
+<div>
+  <%= link_to admin_post_image_path(post_image.id) do %>
+    <%= attachment_image_tag post_image, :image , size: '160x120'%>
+  <% end %>
+
+  <p>ゲーム名：<%= post_image.game_name %></p>
+  <p>説明：<%= post_image.caption.truncate(20) %></p>
+  <%= link_to "詳細をみる", admin_post_image_path(post_image.id) %>
+  <p><%= link_to "#{post_image.post_reviews.count} レビュー", admin_post_image_path(post_image.id) %></p>
+</div>
+<% end %>
+<%= paginate @post_images %>

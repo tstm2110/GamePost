@@ -7,24 +7,34 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <h1><a href="/",class:"no-underline">GamePost</a>  </h1>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
   </head>
 
   <body>
+
+    <nav class="pc-nav">
+    <ul>
     <!--管理者でログインしている場合-->
    <% if admin_signed_in? %>
    <li>
-       <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
+       <%= link_to "ログアウト", destroy_member_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1' %>
    </li>
    　<!--ログインしている場合-->
    <% elsif member_signed_in? %>
+
+   <li class="name-link">ようこそ、<%= current_member.name  %>様！</li>
    <li>
         <%= link_to '投稿フォーム', new_post_image_path %>
    </li>
    <li>
-       <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
+       <%= link_to "ログアウト", destroy_member_session_path, method: :delete ,class: 'btn btn-outline-secondary mx-3 my-1'%>
    </li>
    <li>
        <%= link_to"お問い合わせ", contacts_path %>
+   </li>
+    <li>
+       <%= link_to"ランキング", post_images_path %>
    </li>
    <%= form_tag(search_path, method: :get) do %>
 
@@ -46,8 +56,13 @@
    <li>
        <%= link_to"お問い合わせ", contacts_path %>
    </li>
-   <% end %>
-   <%= yield %>
+   <li>
+       <%= link_to"ランキング", root_path %>
+   </li>
+   <% end %> </ul>  </nav>
+  <div class="container">
+     <%= yield %>
+  </div>
   </body>
   <footer></footer>
 </html>

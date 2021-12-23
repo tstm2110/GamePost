@@ -26,6 +26,10 @@ devise_for :members, controllers: {
   # 管理者用
   namespace :admin do
     root "homes#top"
+    resources :post_images, only: [:new, :create, :index, :show, :destroy] do
+    resources :post_reviews, only: [:create, :destroy]
+     resource :favorites, only: [:create, :destroy]
+  end
     # get '/admin/sign_out' => 'devise/sessions#destroy'
   end
  # 会員用

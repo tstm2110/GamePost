@@ -1,8 +1,24 @@
-<h1>トップページ</h1>
-ランキング
-<%@all_ranks.each_with_index do |post_image, i| %>
+<h1>ランキング</h1>
+<br>
+<%@all_ranks.first(10).each_with_index do |post_image, i| %>
 　第<%= i+1 %>位
 　<%= link_to post_image_path(post_image.id) do %>
 　<%= post_image.game_name %>
 　<% end %>
+　<br>
 <% end %>
+
+<h2>新着　投稿作品</h2>
+<% @post_images.each do |post_image| %>
+<div>
+  <%= link_to post_image_path(post_image.id) do %>
+    <%= attachment_image_tag post_image, :image %>
+  <% end %>
+
+  <p>ゲーム名：<%= post_image.game_name %></p>
+  <p>説明：<%= post_image.caption.truncate(20) %></p>
+  <%= link_to "詳細をみる", post_image_path(post_image.id) %>
+  <p><%= link_to "#{post_image.post_reviews.count} レビュー", post_image_path(post_image.id) %></p>
+</div>
+<% end %>
+<%= paginate @post_images %>

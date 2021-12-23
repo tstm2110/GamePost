@@ -9,20 +9,36 @@ class PostImage < ApplicationRecord
 
   def favorited_by?(member)
 
-    self.favorites.where(member_id: member.id).exists?
+    if self.favorites.where(member_id: member.id).exists?
+    else
+    end
   end
 
-  def self.search(search,word)
-    if search == "forward_match"
-        @game = PostImage.where("game_name LIKE?","#{word}%")
-    elsif search == "backward_match"
-        @game = PostImage.where("game_name LIKE?","%#{word}")
-    elsif search == "perfect_match"
-        @game = PostImage.where("#{word}")
-    elsif search == "partial_match"
-        @game = PostImage.where("game_name LIKE?","%#{word}%")
+
+  def self.search(range, search, word)
+    if range == '1'
+      if search == "forward_match"
+          @game = PostImage.where("game_name LIKE?","#{word}%")
+      elsif search == "backward_match"
+          @game = PostImage.where("game_name LIKE?","%#{word}")
+      elsif search == "perfect_match"
+          @game = PostImage.where("#{word}")
+      elsif search == "partial_match"
+          @game = PostImage.where("game_name LIKE?","%#{word}%")
+      else
+          @game = PostImage.all
+      end
     else
-        @game = PostImage.all
+      if search == 'perfect_match'
+        @game = PostImage.joins(:tags).where("tags.tag_name like '#{word}'")
+      elsif search == 'forward_match'
+        @game = PostImage.joins(:tags).where("tags.tag_name like '#{word}%'")
+      elsif search == 'backward_match'
+        @game = PostImage.joins(:tags).where("tags.tag_name like '%#{word}'")
+      else
+        #partial_match
+        @game = PostImage.joins(:tags).where("tags.tag_name like '%#{word}%'")
+      end
     end
   end
 
