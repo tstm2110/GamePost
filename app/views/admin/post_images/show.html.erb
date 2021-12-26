@@ -1,13 +1,14 @@
-<h3詳細</h3>
-<div>
-  <%= attachment_image_tag @post_image, :image %>
-    <%= link_to "削除", post_image_path(@post_image), method: :delete %>
+<h2>管理者</h2>
+<h3>詳細</h3><div class="row">
+  <div class="d-flex align-items-start col-md-5">
+  <%= attachment_image_tag @post_image, :image ,:fill,500,350, fallback: "no_image.jpg",size:'300x200' %>
+  </div>
+  <div class="col-md-7">
   <p>ゲーム名：<%= @post_image.game_name %></p>
   <div class="word-break">
   <div class="normal">
   <p>説明：<%= @post_image.caption %></p>
 </div></div>
-
 <p> タグ:
  <% @post_tags.each do |tag| %>
   <span >
@@ -16,42 +17,18 @@
     <% end %></p>
   <p>紹介ユーザー：<%= @post_image.member.name %></p>
   <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
-
-
-
-  <% if @post_image.favorited_by?(current_admin) %>
-    <p>
-      <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
-        ★<%= @post_image.favorites.count %> 評価
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_image_favorites_path(@post_image), method: :post do %>
-        ☆<%= @post_image.favorites.count %> 評価
-      <% end %>
-    </p>
-  <% end %>
-
-</div>
-
-<div>
 <p>コメント件数：<%= @post_image.post_reviews.count %></p>
 <% @post_image.post_reviews.each do |post_review| %>
-
   <%= post_review.member.name %>
   <%= post_review.created_at.strftime('%Y/%m/%d') %><%= post_review.review %>
-
   <div>
     <%= link_to "削除", post_image_post_review_path(post_review.post_image, post_review), method: :delete %>
   </div>
-
-
 <% end %>
-</div>
 <div>
-<%= form_with(model:[@post_image, @post_review], local: true) do |f| %>
-  <%= f.text_area :review, rows:'5',placeholder: "レビューをここに" %>
-  <%= f.submit "送信する" %>
-<% end %>
+   <%= link_to "削除", admin_root_path, method: :delete,class: 'btn btn-outline-secondary' %>
+
+   <%= link_to "戻る", admin_root_path,class: 'btn btn-outline-secondary' %>
 </div>
+</div>
+

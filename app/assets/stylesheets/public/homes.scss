@@ -1,4 +1,7 @@
-// Place all the styles related to the public/homes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
 .no-underline{text-decoration:none !important;}
+body {
+  background-image: image-url("poole.jpg");
+  height: 100vh;
+  background-size: cover;
+}

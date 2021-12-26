@@ -7,57 +7,56 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <h1><a href="/",class:"no-underline">GamePost</a>  </h1>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
 
   <body>
 
-    <nav class="pc-nav">
+    <nav class="pc-nav py-3">
+      <h1 class="text-center"><a href="/" class="no-underline"><%= image_tag 'logo.png' %></a></h1>
     <ul>
     <!--管理者でログインしている場合-->
    <% if admin_signed_in? %>
    <li>
        <%= link_to "ログアウト", destroy_member_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1' %>
    </li>
-   　<!--ログインしている場合-->
+    <!--ログインしている場合-->
    <% elsif member_signed_in? %>
 
    <li class="name-link">ようこそ、<%= current_member.name  %>様！</li>
    <li>
-        <%= link_to '投稿フォーム', new_post_image_path %>
+        <%= link_to '投稿フォーム', new_post_image_path,class: 'btn btn-sm btn-outline-secondary mx-3 my-1'%>
    </li>
    <li>
-       <%= link_to "ログアウト", destroy_member_session_path, method: :delete ,class: 'btn btn-outline-secondary mx-3 my-1'%>
+       <%= link_to "ログアウト", destroy_member_session_path, method: :delete ,class: 'btn btn-sm btn-outline-secondary mx-3 my-1'%>
    </li>
    <li>
-       <%= link_to"お問い合わせ", contacts_path %>
+       <%= link_to"お問い合わせ", contacts_path,class: 'btn btn-sm btn-outline-secondary mx-3 my-1' %>
    </li>
     <li>
-       <%= link_to"ランキング", post_images_path %>
+       <%= link_to"ランキング", post_images_path,class: 'btn btn-sm btn-outline-secondary mx-3 my-1' %>
    </li>
-   <%= form_tag(search_path, method: :get) do %>
-
-　　<%= select_tag 'range' ,options_for_select([['---選択してください---', ''], ['ゲームタイトル', '1'], ['タグ', '2']]) %>
-
-   　　<%= select_tag 'search', options_for_select([["前方一致","forward_match"], ["後方一致","backward_match"], ["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
-   　　<%= text_field_tag (:word) %>
-   　　<%= submit_tag "検索" %>
+       <%= form_tag(search_path, method: :get) do %>
+       <%= select_tag 'range' ,options_for_select([['---選択してください---', ''], ['ゲームタイトル', '1'], ['タグ', '2']]) %>
+       <%= select_tag 'search', options_for_select([["前方一致","forward_match"], ["後方一致","backward_match"], ["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
+       <%= text_field_tag (:word) %>
+       <%= submit_tag "検索" %>
 
    <% end %>
     <!--ログインしてない場合-->
   <% else %>
    <li>
-       <%= link_to "新規登録", new_member_registration_path %>
+       <%= link_to "新規登録", new_member_registration_path,class: 'btn btn-sm btn-outline-secondary mx-3 my-1' %>
    </li>
    <li>
-       <%= link_to "ログイン", new_member_session_path %>
+       <%= link_to "ログイン", new_member_session_path ,class: 'btn btn-sm btn-outline-secondary mx-3 my-1'%>
    </li>
    <li>
-       <%= link_to"お問い合わせ", contacts_path %>
+       <%= link_to"お問い合わせ", contacts_path ,class: 'btn btn-sm btn-outline-secondary mx-3 my-1'%>
    </li>
    <li>
-       <%= link_to"ランキング", root_path %>
+       <%= link_to"ランキング", post_images_path ,class: 'btn btn-sm btn-outline-secondary mx-3 my-1'%>
    </li>
    <% end %> </ul>  </nav>
   <div class="container">

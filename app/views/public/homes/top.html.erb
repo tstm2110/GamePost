@@ -1,24 +1,36 @@
-<h1>ランキング</h1>
+<div class="row">
+    <!--ここからサイドバー-->
+<div class="d-flex align-items-start col-md-3">
+<table class='table table-hover table-inverse'>
+<thead><tr><th>
+<h3>ランキング</h3></th>
 <br>
 <%@all_ranks.first(10).each_with_index do |post_image, i| %>
-　第<%= i+1 %>位
-　<%= link_to post_image_path(post_image.id) do %>
-　<%= post_image.game_name %>
-　<% end %>
-　<br>
-<% end %>
-
-<h2>新着　投稿作品</h2>
-<% @post_images.each do |post_image| %>
-<div>
+  <tr><td class="no-underline">第<%= i+1 %>位
   <%= link_to post_image_path(post_image.id) do %>
-    <%= attachment_image_tag post_image, :image %>
-  <% end %>
-
-  <p>ゲーム名：<%= post_image.game_name %></p>
-  <p>説明：<%= post_image.caption.truncate(20) %></p>
-  <%= link_to "詳細をみる", post_image_path(post_image.id) %>
-  <p><%= link_to "#{post_image.post_reviews.count} レビュー", post_image_path(post_image.id) %></p>
-</div>
+  <%= post_image.game_name %>
+  <% end %></td></tr>
+  <br>
 <% end %>
+</table></div>
+   <!--ここまでサイドバー-->
+   
+<div class="col-md-9">
+ <h2>新着　投稿作品</h2>
+ <br>
+    <div class="row">
+     <% @post_images.each do |post_image| %>
+      <div class="col-md-6">
+       <%= link_to post_image_path(post_image.id) do %>
+       <%= attachment_image_tag post_image, :image,:fill,500,350, fallback: "no_image.jpg",size:'280x240' %>
+       <% end %>
+       <p>ゲーム名：<%= post_image.game_name %></p>
+       <p>説明：<%= post_image.caption.truncate(20) %></p>
+        <%= link_to "詳細をみる", post_image_path(post_image.id) %>
+        <p><%= link_to "#{post_image.post_reviews.count} レビュー", post_image_path(post_image.id) %></p>
+        </div>
+        <% end %>
+      </div>
+</div>
 <%= paginate @post_images %>
+</div>

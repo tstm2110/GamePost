@@ -23,6 +23,7 @@ class Public::PostImagesController < ApplicationController
   def index
     @post_images = PostImage.all.page(params[:page]).per(5).order(created_at: :desc)
     @all_ranks =  PostImage.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
+    
   end
 
   def show

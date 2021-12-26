@@ -8,10 +8,7 @@ class PostImage < ApplicationRecord
    has_many :tags, through: :tag_maps
 
   def favorited_by?(member)
-
-    if self.favorites.where(member_id: member.id).exists?
-    else
-    end
+  self.favorites.where(member_id: member.id).exists?
   end
 
 
