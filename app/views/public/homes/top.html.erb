@@ -3,18 +3,23 @@
 <div class="d-flex align-items-start col-md-3">
 <table class='table table-hover table-inverse'>
 <thead><tr><th>
-<h3>ランキング</h3></th>
+<h3 >ランキング</h3></th>
 <br>
 <%@all_ranks.first(10).each_with_index do |post_image, i| %>
-  <tr><td class="no-underline">第<%= i+1 %>位
-  <%= link_to post_image_path(post_image.id) do %>
-  <%= post_image.game_name %>
-  <% end %></td></tr>
+
+  <tr class="row mb-2" style="border-bottom: 1px solid #000;">
+   <td class="no-underline">第<%= i+1 %>位
+   <%= link_to post_image_path(post_image.id) do %>
+   <%= post_image.game_name %>
+   <% end %>
+   </td>
+  </tr>
+
   <br>
 <% end %>
 </table></div>
    <!--ここまでサイドバー-->
-   
+
 <div class="col-md-9">
  <h2>新着　投稿作品</h2>
  <br>
