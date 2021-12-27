@@ -17,7 +17,7 @@
   <p>紹介ユーザー：<%= @post_image.member.name %></p>
   <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
 <!--レビューサイトの性質上削除は個人では行わず問い合わせから削除依頼で-->
-
+ <% if member_signed_in? %>
   <% if @post_image.favorited_by?(current_member) %>
     <p>
       <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
@@ -31,7 +31,7 @@
       <% end %>
     </p>
   <% end %>
-
+<% end %>
 <p>レビュー件数：<%= @post_image.post_reviews.count %></p>
 </div></div>
 <% @post_image.post_reviews.each do |post_review| %>
