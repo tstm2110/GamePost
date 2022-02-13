@@ -24,9 +24,6 @@ GamePost
 ### 主な利用シーン
 ゲームを遊ぶ前に評価を調べたいときや楽しかったゲームをおすすめしたいときなど。
 
-## 設計書
-<...>
-
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1ssc4GrZpBs2LOAdlwkvdUG-wS6NqDOzexnQAFH29umc/edit#gid=0
 
